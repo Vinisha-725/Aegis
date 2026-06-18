@@ -20,8 +20,8 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 # Import all models so Alembic autogenerate detects every table
 import app.models  # noqa: E402, F401
+from app.core.config import get_settings  # noqa: E402
 from app.models.base import Base  # noqa: E402
-from app.shared.config import get_settings  # noqa: E402
 
 # ── Alembic config ────────────────────────────────────────────────────────────
 config = context.config

@@ -2,7 +2,7 @@ import datetime
 
 from fastapi import APIRouter
 
-from app.shared.config import get_settings
+from app.core.config import get_settings
 
 router = APIRouter()
 settings = get_settings()

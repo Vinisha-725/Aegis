@@ -17,7 +17,7 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.models.base import Base, TimestampMixin, generate_uuid
 
 if TYPE_CHECKING:
-    from app.models.project.model import Project
+    from app.models.project import Project
 
 
 class Repository(TimestampMixin, Base):

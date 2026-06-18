@@ -18,9 +18,9 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.models.base import Base, TimestampMixin, generate_uuid
 
 if TYPE_CHECKING:
-    from app.models.consensus_result.model import ConsensusResult
-    from app.models.evidence.model import Evidence
-    from app.models.project.model import Project
+    from app.models.consensus_result import ConsensusResult
+    from app.models.evidence import Evidence
+    from app.models.project import Project
 
 
 class MilestoneStatus(enum.StrEnum):

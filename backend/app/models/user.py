@@ -15,8 +15,8 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.models.base import Base, TimestampMixin, generate_uuid
 
 if TYPE_CHECKING:
-    from app.models.project.model import Project
-    from app.models.reputation.model import Reputation
+    from app.models.project import Project
+    from app.models.reputation import Reputation
 
 
 class User(TimestampMixin, Base):
