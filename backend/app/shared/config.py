@@ -1,3 +1,10 @@
+"""
+shared/config.py — Application configuration.
+
+All environment variables are loaded here via pydantic-settings.
+Import get_settings() anywhere in the app; it returns a cached singleton.
+"""
+
 from __future__ import annotations
 
 from functools import lru_cache
@@ -16,14 +23,14 @@ class Settings(BaseSettings):
         extra="ignore",
     )
 
-    # ── App ─────────────────────────────────────────────────────────────────
+    # ── App ───────────────────────────────────────────────────────────────────
     environment: str = "development"
     log_level: str = "INFO"
     secret_key: str = "CHANGE_ME_super_secret_key_at_least_32_chars"
     algorithm: str = "HS256"
     access_token_expire_minutes: int = 60
 
-    # ── Database ─────────────────────────────────────────────────────────────
+    # ── Database ──────────────────────────────────────────────────────────────
     postgres_user: str = "aegis"
     postgres_password: str = "aegis_dev_password"
     postgres_host: str = "postgres"
@@ -33,6 +40,7 @@ class Settings(BaseSettings):
     @computed_field  # type: ignore[prop-decorator]
     @property
     def database_url(self) -> str:
+        """Async database URL used by SQLAlchemy at runtime."""
         return (
             f"postgresql+asyncpg://{self.postgres_user}:{self.postgres_password}"
             f"@{self.postgres_host}:{self.postgres_port}/{self.postgres_db}"
@@ -41,7 +49,7 @@ class Settings(BaseSettings):
     @computed_field  # type: ignore[prop-decorator]
     @property
     def database_url_sync(self) -> str:
-        """Synchronous URL used by Alembic."""
+        """Synchronous URL used by Alembic migrations."""
         return (
             f"postgresql+psycopg2://{self.postgres_user}:{self.postgres_password}"
             f"@{self.postgres_host}:{self.postgres_port}/{self.postgres_db}"
@@ -53,12 +61,8 @@ class Settings(BaseSettings):
     github_redirect_uri: str = "http://localhost:3000/auth/callback"
     github_token: str = ""
 
-    # ── Anthropic ─────────────────────────────────────────────────────────────
+    # ── Anthropic (Themis + Dike agents) ─────────────────────────────────────
     anthropic_api_key: str = ""
-
-    # ── Solana ────────────────────────────────────────────────────────────────
-    solana_network: str = "devnet"
-    solana_rpc_url: str = "https://api.devnet.solana.com"
 
     # ── Frontend ──────────────────────────────────────────────────────────────
     next_public_app_url: str = "http://localhost:3000"
@@ -66,5 +70,5 @@ class Settings(BaseSettings):
 
 @lru_cache
 def get_settings() -> Settings:
-    """Return cached settings instance."""
+    """Return a cached Settings instance (singleton)."""
     return Settings()
