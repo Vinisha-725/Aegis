@@ -6,7 +6,7 @@
 |-------|------|--------|-----------|
 | 0 | Project Foundation | ✅ Complete | 2026-06-18 |
 | 1 | Database & Domain Models | ✅ Complete | 2026-06-18 |
-| 2 | Authentication | ⏳ Pending | — |
+| 2 | Authentication | ✅ Complete | 2026-06-18 |
 | 3 | Project Management | ⏳ Pending | — |
 | 4 | GitHub Integration | ⏳ Pending | — |
 | 5 | Argus Agent | ⏳ Pending | — |
