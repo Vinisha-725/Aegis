@@ -5,7 +5,7 @@
 | Phase | Name | Status | Completed |
 |-------|------|--------|-----------|
 | 0 | Project Foundation | ✅ Complete | 2026-06-18 |
-| 1 | Database & Domain Models | ⏳ Pending | — |
+| 1 | Database & Domain Models | ✅ Complete | 2026-06-18 |
 | 2 | Authentication | ⏳ Pending | — |
 | 3 | Project Management | ⏳ Pending | — |
 | 4 | GitHub Integration | ⏳ Pending | — |
