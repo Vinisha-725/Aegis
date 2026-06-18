@@ -14,8 +14,7 @@ venv/
 env/
 *.egg
 .mypy_cache/
-.ruff_cache/
-.pytest_cache/
+.cache/
 htmlcov/
 .coverage
 coverage.xml
