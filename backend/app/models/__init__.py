@@ -20,6 +20,7 @@ Each domain has its own subfolder:
 from app.models.agent_result import AgentName, AgentResult
 from app.models.base import Base, TimestampMixin, generate_uuid
 from app.models.consensus_result import ConsensusResult
+from app.models.escrow import Escrow, EscrowStatus
 from app.models.evidence import Evidence
 from app.models.milestone import Milestone, MilestoneStatus
 from app.models.project import Project, ProjectStatus
@@ -45,5 +46,7 @@ __all__ = [
     "AgentResult",
     "AgentName",
     "ConsensusResult",
+    "Escrow",
+    "EscrowStatus",
     "Reputation",
 ]

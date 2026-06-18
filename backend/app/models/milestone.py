@@ -19,6 +19,7 @@ from app.models.base import Base, TimestampMixin, generate_uuid
 
 if TYPE_CHECKING:
     from app.models.consensus_result import ConsensusResult
+    from app.models.escrow import Escrow
     from app.models.evidence import Evidence
     from app.models.project import Project
 
@@ -87,6 +88,12 @@ class Milestone(TimestampMixin, Base):
     )
     consensus_result: Mapped[ConsensusResult | None] = relationship(
         "ConsensusResult",
+        back_populates="milestone",
+        uselist=False,
+        cascade="all, delete-orphan",
+    )
+    escrow: Mapped[Escrow | None] = relationship(
+        "Escrow",
         back_populates="milestone",
         uselist=False,
         cascade="all, delete-orphan",
