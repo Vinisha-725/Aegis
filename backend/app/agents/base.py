@@ -9,8 +9,6 @@ Every agent:
 
 from __future__ import annotations
 
-from pydantic import BaseModel
-
 
 class AgentError(Exception):
     """Raised when an agent cannot complete its verification."""

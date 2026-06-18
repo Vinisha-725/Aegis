@@ -77,7 +77,7 @@ class ArgusAgent:
 
     _GITHUB_API = "https://api.github.com"
     _COMMITS_PER_PAGE = 100
-    _FILES_SAMPLE_SIZE = 5   # max commits to inspect for file lists
+    _FILES_SAMPLE_SIZE = 5  # max commits to inspect for file lists
     _CONFIDENCE_COMMIT_TARGET = 10
     _CONFIDENCE_FILE_TARGET = 10
 
@@ -96,7 +96,9 @@ class ArgusAgent:
         async with httpx.AsyncClient(headers=headers, timeout=30.0) as client:
             commits_data = await self._fetch_commits(client, input)
             commit_messages = self._extract_messages(commits_data)
-            file_list = await self._fetch_changed_files(client, input.repo, commits_data)
+            file_list = await self._fetch_changed_files(
+                client, input.repo, commits_data
+            )
 
         commits_count = len(commits_data)
         files_count = len(file_list)
@@ -129,7 +131,9 @@ class ArgusAgent:
         )
 
         if response.status_code == 404:
-            raise AgentError("argus", f"Repository '{input.repo}' not found or not accessible.")
+            raise AgentError(
+                "argus", f"Repository '{input.repo}' not found or not accessible."
+            )
         if not response.is_success:
             raise AgentError("argus", f"GitHub API error {response.status_code}.")
 
@@ -156,7 +160,9 @@ class ArgusAgent:
             sha = commit.get("sha", "")
             if not sha:
                 continue
-            response = await client.get(f"{self._GITHUB_API}/repos/{repo}/commits/{sha}")
+            response = await client.get(
+                f"{self._GITHUB_API}/repos/{repo}/commits/{sha}"
+            )
             if response.is_success:
                 for f in response.json().get("files", []):
                     filename = f.get("filename", "")
