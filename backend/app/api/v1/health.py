@@ -1,8 +1,8 @@
-from datetime import UTC, datetime
+import datetime
 
 from fastapi import APIRouter
 
-from app.core.config import get_settings
+from app.shared.config import get_settings
 
 router = APIRouter()
 settings = get_settings()
@@ -10,10 +10,10 @@ settings = get_settings()
 
 @router.get("/health", tags=["system"])
 async def health_check() -> dict:
-    """Health check endpoint. Returns service status and environment info."""
+    """Health check — returns service status, environment, and current timestamp."""
     return {
         "status": "ok",
         "service": "aegis-backend",
         "environment": settings.environment,
-        "timestamp": datetime.now(UTC).isoformat(),
+        "timestamp": datetime.datetime.now(datetime.UTC).isoformat(),
     }

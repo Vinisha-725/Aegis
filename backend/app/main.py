@@ -7,7 +7,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.api import router
-from app.core.config import get_settings
+from app.shared.config import get_settings
 
 settings = get_settings()
 
@@ -23,8 +23,8 @@ logger = logging.getLogger(__name__)
 # ── Lifespan ──────────────────────────────────────────────────────────────────
 @asynccontextmanager
 async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
-    """Application startup and shutdown events."""
-    logger.info("Aegis backend starting up — environment: %s", settings.environment)
+    """Startup and shutdown lifecycle hooks."""
+    logger.info("Aegis backend starting — environment: %s", settings.environment)
     yield
     logger.info("Aegis backend shutting down")
 
@@ -34,7 +34,7 @@ app = FastAPI(
     title="Aegis API",
     description=(
         "AI-powered trust protocol that verifies software development milestones "
-        "using AI agents and automatically releases escrowed payments."
+        "using AI agents and releases payments automatically."
     ),
     version="0.1.0",
     docs_url="/docs",
@@ -59,8 +59,8 @@ app.add_middleware(
 app.include_router(router)
 
 
-# ── Root redirect ─────────────────────────────────────────────────────────────
+# ── Root health probe (for Docker / load balancer) ────────────────────────────
 @app.get("/health", tags=["system"], include_in_schema=False)
 async def root_health() -> dict:
-    """Root-level health check for Docker / load balancer probes."""
+    """Root-level health check."""
     return {"status": "ok"}
