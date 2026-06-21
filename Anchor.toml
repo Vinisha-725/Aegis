@@ -1,0 +1,22 @@
+[features]
+seeds = false
+skip-lint = false
+
+[programs.localnet]
+aegis_protocol = "EQHyr1vMCCPpnHGqvwdNKSPUng6yJXQD5uxt6SFr1vKo"
+
+[programs.devnet]
+aegis_protocol = "EQHyr1vMCCPpnHGqvwdNKSPUng6yJXQD5uxt6SFr1vKo"
+
+[programs.mainnet]
+aegis_protocol = "EQHyr1vMCCPpnHGqvwdNKSPUng6yJXQD5uxt6SFr1vKo"
+
+[registry]
+url = "https://apr.dev"
+
+[provider]
+cluster = "Localnet"
+wallet = "~/.config/solana/id.json"
+
+[scripts]
+test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts"
