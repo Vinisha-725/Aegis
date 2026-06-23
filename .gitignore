@@ -42,3 +42,12 @@ docker-data/
 .env.local
 .env.*.local
 secrets/
+
+# === Rust / Cargo / Anchor ===
+target/
+Cargo.lock
+**/*.rs.bk
+.anchor/
+test-ledger/
+.shake/
+.DS_Store
